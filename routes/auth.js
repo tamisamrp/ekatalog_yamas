@@ -50,6 +50,12 @@ router.post('/log', async (req, res) => {
             return res.redirect('/')
         }
 
+        if (aplikasiEkatalog.hak_akses != 'pustakawan' && aplikasiEkatalog.hak_akses != 'manajer') {
+            req.flash('error', 'Akun Anda tidak memiliki tidak memiliki hak akses')
+            req.flash('data', data)
+            return res.redirect('/')
+        }
+
         const now = new Date()
         const mulai = pegawai.periode_mulai ? new Date(pegawai.periode_mulai) : null
         const berakhir = pegawai.periode_berakhir ? new Date(pegawai.periode_berakhir) : null

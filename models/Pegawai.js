@@ -12,7 +12,6 @@ class Pegawai {
             throw err
         }
     }
-    
 
     static async getNama(id) {
         try {
